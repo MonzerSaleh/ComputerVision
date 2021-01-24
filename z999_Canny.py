@@ -9,16 +9,16 @@ title_trackbar2 = 'Max/High Threshold:'
 
 ratio = 3
 kernel_size = 3
-img = 'images/ex001.png'
+img = 'images/ex000_lena.png'
 
 def CannyThreshold(val):
     low_threshold = cv.getTrackbarPos(title_trackbar1, window_name)
     hgh_threshold = cv.getTrackbarPos(title_trackbar2, window_name)
     img_blur = cv.blur(src_gray, (3,3))
     detected_edges = cv.Canny(img_blur, low_threshold, hgh_threshold, kernel_size)
-    mask = detected_edges != 0
-    dst = src * (mask[:,:,None].astype(src.dtype))
-    cv.imshow(window_name, dst)
+    #mask = detected_edges != 0
+    #dst = src * (mask[:,:,None].astype(src.dtype))
+    cv.imshow(window_name, detected_edges )
     
 parser = argparse.ArgumentParser(description='Code for Canny Edge Detector tutorial.')
 parser.add_argument('--input', help='Path to input image.', default='fruits.jpg')

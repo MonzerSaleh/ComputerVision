@@ -42,9 +42,8 @@ def save_image(filename, image):
     cv2.imwrite(os.path.join(OUT_DIR, filename), im)
 
 
-video_name = "20210418_153420.mp4"
-video_gen = video_frame_generator(video_name)
 
+video_gen = video_frame_generator(video_name)
 # in order to write out the video
 videoFrame = video_gen.__next__()
 h, w, d = videoFrame.shape

@@ -3,10 +3,10 @@ import cv2
 import numpy as np
 
 OUT_DIR = "./frames"
-
+SCALE_DOWN = 0.2
 # A simple script to parse an mp4 video into a series of images named frame0000.png to whatever
 # Save an mp4 video into this folder and put the name here
-video_name = "20210418_153420.mp4"
+video_name = "v3_video.mp4"
 
 if not os.path.isdir(OUT_DIR):
     os.makedirs(OUT_DIR)
@@ -38,7 +38,7 @@ def video_frame_generator(filename):
 
 def save_image(filename, image):
     """Convenient wrapper for writing images to the output directory."""
-    im = cv2.resize(image, None, fx=0.3, fy=0.3)
+    im = cv2.resize(image, None, fx=SCALE_DOWN, fy=SCALE_DOWN)
     cv2.imwrite(os.path.join(OUT_DIR, filename), im)
 
 

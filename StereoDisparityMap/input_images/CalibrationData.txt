@@ -1,0 +1,86 @@
+Explanation:
+
+cam0,1:        camera matrices for the rectified views, in the form [f 0 cx; 0 f cy; 0 0 1], where
+  f:           focal length in pixels
+  cx, cy:      principal point  (note that cx differs between view 0 and 1)
+
+doffs:         x-difference of principal points, doffs = cx1 - cx0
+baseline:      camera baseline in mm
+width, height: image size
+ndisp:         a conservative bound on the number of disparity levels;
+               the stereo algorithm MAY utilize this bound and search 
+			   from d = 0 .. ndisp-1
+isint:         whether the GT disparites only have integer precision 
+			   (true for the older datasets;
+               in this case submitted floating-point disparities are 
+			   rounded to ints before evaluating)
+vmin, vmax:    a tight bound on minimum and maximum disparities, used for color visualization;
+               the stereo algorithm MAY NOT utilize this information
+dyavg, dymax:  average and maximum absolute y-disparities, providing an indication of
+               the calibration error present in the imperfect datasets.
+			   
+To convert from the floating-point disparity value d [pixels] in the 
+	.pfm file to depth Z [mm] the 
+	following equation can be used:
+Z = baseline * f / (d + doffs)
+Note that the image viewer "sv" and mesh viewer "plyv" provided by our software cvkit can read the calib.txt files and provide this conversion automatically when viewing .pfm disparity maps as 3D meshes.
+
+
+
+pipes
+	cam0=[3968.297 0 1188.925; 0 3968.297 979.657; 0 0 1]
+	cam1=[3968.297 0 1266.14; 0 3968.297 979.657; 0 0 1]
+	doffs=77.215
+	baseline=236.922
+	width=2960
+	height=1924
+	ndisp=300
+	isint=0
+	vmin=28
+	vmax=276
+	dyavg=0
+	dymax=0
+
+sword
+	cam0=[6872.874 0 1329.49; 0 6872.874 954.485; 0 0 1]
+	cam1=[6872.874 0 1623.46; 0 6872.874 954.485; 0 0 1]
+	doffs=293.97
+	baseline=174.724
+	width=2912
+	height=2020
+	ndisp=260
+	isint=0
+	vmin=0
+	vmax=238
+	dyavg=0
+	dymax=0
+
+
+flowers
+	cam0=[4396.869 0 1353.072; 0 4396.869 989.702; 0 0 1]
+	cam1=[4396.869 0 1538.86; 0 4396.869 989.702; 0 0 1]
+	doffs=185.788
+	baseline=144.049
+	width=2880
+	height=1980
+	ndisp=640
+	isint=0
+	vmin=17
+	vmax=619
+	dyavg=0
+	dymax=0
+
+
+PlayTable
+	cam0=[2329.558 0 1141.452; 0 2329.558 927.052; 0 0 1]
+	cam1=[2329.558 0 1241.731; 0 2329.558 927.052; 0 0 1]
+	doffs=100.279
+	baseline=193.006
+	width=2724
+	height=1848
+	ndisp=290
+	isint=0
+	vmin=27
+	vmax=270
+	dyavg=0
+	dymax=0
